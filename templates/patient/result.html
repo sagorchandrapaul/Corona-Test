@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} All Result {% endblock %}
+
+{% block content %}
+    <div class="row pt-3 mb-5">
+        <div class="col-md-9 offset-md-1">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>SL NO</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Temperature</th>
+                        <th>Date</th>
+                        <th>Score</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in patient %}
+                    
+                    <tr>
+                        <td>
+                            <a style="text-decoration: none; color:green" 
+                                href="{% url 'corona:detail' obj.id %}">
+                                {{ obj.id }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ obj.age }}
+                        </td>
+                        <td>
+                            {{ obj.gender }}
+                        </td>
+                        <td>
+                            {{ obj.temperature }}°F
+                        </td>
+                        <td>
+                            {{ obj.pub_date }}
+                        </td>
+                        <td>
+                            {{ obj.score }}
+                        </td>
+                    
+                        <td>
+                            {% if obj.score < 5%}
+                                <p>Negative</p>
+                            {% elif obj.score >= 5 %}
+                                <!-- <p>Positive</p> -->
+                                {% if obj.score >= 5 and obj.score <= 7 %}
+                                    <p>Positive</p>
+                                {% elif obj.score > 7 %}
+                                    <p>Positive</p>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+            {% include 'patient/pagination.html' with page=page_obj %}
+        </div>
+    </div>
+<br><br><br><br><br>
+{% endblock %}

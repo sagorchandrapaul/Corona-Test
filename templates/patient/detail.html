@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %} Test Result {% endblock %}
+
+{% block content %}
+
+    <div class="row pt-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="card" style="text-align: justify">
+              <div class="card-body p-5">
+                <h5 class="card-title">Your Age : {{ patient.age }} </h5>
+                <h5 class="card-title">Score : {{ patient.score }} </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Your Body Temperature : {{ patient.temperature }}</h6>
+
+                {% if patient.score < 5%}
+                    <p> <strong> COVID-19: Negative </strong></p>
+                    <p>You merely have chance to be infected by COVID-19, still you should be isolated and take 
+                        doctor's advice.
+                    </p>
+                {% elif patient.score >= 5 %}
+                    <p> <strong> COVID-19: Positive </strong></p>
+                    <p>Possible suspected case for COVID-19 affected. You should be
+                        isolated and contact doctor to follow advice.
+                    </p>
+                    {% if patient.score >= 5 and patient.score <= 7 %}
+                        <p class="border rounded border-warning p-3">You have a highly chance that you have affected by COVID-19. You should be
+                            isolated and contact doctor to follow advice. Please contact any of these numbers provided below in case of emmergency.
+                        </p>
+                    {% elif patient.score > 7 %}
+                        <p class="border rounded border-danger p-3">We are almost confirmed that you are affected by COVID-19. You should be
+                            isolated and contact doctor to follow advice. We highly advice you to be hospitalized. Please contact any of these numbers provided below in case of emmergency.
+                        </p>
+
+                    {% endif %}
+                    {% if patient.score >= 5 %}
+                    <div class="row corona" style="font-family: 'Kalpurush', Arial, sans-serif !important;">
+                        <div class="row mb-5 ">
+
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-1" style="height: 171px; text-align: justify">
+                                    <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        <a style="text-decoration:none; color:red" href="tel:333">
+                                            ৩৩৩
+                                        </a>
+                                    </h5>
+                                    <h5 class="card-title">জাতীয় কল সেন্টার</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-1" style="height: 171px; text-align: justify">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">
+                                            <a style="text-decoration:none; color:red" href="tel:16263">
+                                                ১৬২৬৩
+                                            </a>
+                                        </h5>
+                                        <h5 class="card-title">স্বাস্থ্য বাতায়ন</h5>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-1" style="height: 171px; text-align: justify">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">
+                                            <a style="text-decoration:none; color:red" href="tel:10655">
+                                                ১০৬৫৫
+                                            </a>
+                                        </h5>
+                                        <h5 class="card-title">আইইডিসিআর</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-1" style="height: 171px; text-align: justify">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">
+                                            <a style="text-decoration:none; color:red" href="tel:09611677777">
+                                                ০৯৬১১৬৭৭৭৭৭
+                                            </a>
+                                        </h5>
+                                        <h5 class="card-title">বিশেষজ্ঞ হেলথ লাইন</h5>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-1" style="height: 171px; text-align: justify">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">
+                                            <a style="text-decoration:none; color:red" href="tel:109">
+                                                ১০৯
+                                            </a>
+                                        </h5>
+                                        <h5 class="card-title">জাতীয় হেল্পলাইন</h5>
+                                         </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-1" style="height: 171px; text-align: justify">
+                                    <div class="card-body text-center">
+                                        
+                            <h5 class="card-title">
+                                <i style="color: red;" class="fa fa-headphones" aria-hidden="true"></i>
+                            </h5>
+                        <h5 class="card-title">
+                            সকল কল সেন্টার
+                        </h5>
+
+                                         </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                        
+                           
+                        </div>
+                    </div>
+                        {% endif %}
+
+                    <a style="margin-left: 250px" href="{% url 'corona:index' %}" class="btn btn-success ">
+                        Test Again <i class="fa fa-search-plus" aria-hidden="true"></i>
+                    </a>
+                {% endif %}
+
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+        
+    </div>
+    <br><br><br>
+
+{% endblock %}
